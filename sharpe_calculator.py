@@ -28,7 +28,6 @@ def calculate_sharpe_ratio():
             QMessageBox.critical(window, "Error", "Initial capital and number of months must be greater than zero.")
             return
 
-        # Calculate average monthly return based on net profit and initial capital
         avg_monthly_return = (net_profit / initial_capital) / months
 
         # Get the risk-free rate and convert it to a monthly rate
@@ -90,15 +89,15 @@ entry_initial_capital = QLineEdit()
 layout.addWidget(entry_initial_capital)
 
 # Label and dropdown for risk-free rate
-label_risk_free = QLabel("Select Risk-Free Rate:")
+label_risk_free = QLabel("Select Risk-Free Rate (1-Year Data):")
 layout.addWidget(label_risk_free)
 dropdown_risk_free = QComboBox()
-dropdown_risk_free.addItems(["S&P 500 (10-Year Average Return)", "US (10-Year Treasury Bond)", "EU (European Government Bonds)", "Emerging Markets (Government Bonds)", "Corporate Bonds (Low Risk)"])
+dropdown_risk_free.addItems(["S&P 500 (1-Year Average Return)", "US (1-Year Treasury Bond)", "EU (1-Year European Government Bonds)", "Emerging Markets (1-Year Government Bonds)", "Corporate Bonds (1-Year Low Risk)"])
 dropdown_risk_free.currentIndexChanged.connect(update_risk_free_rate)  # Connect selection change to update function
 layout.addWidget(dropdown_risk_free)
 
 # Get the default risk-free rate at program startup
-initial_risk_free_rate = get_risk_free_rate("S&P 500 (10-Year Average Return)")
+initial_risk_free_rate = get_risk_free_rate("S&P 500 (1-Year Average Return)")
 if initial_risk_free_rate is not None:
     initial_risk_free_rate_text = f"Risk-Free Rate: {initial_risk_free_rate:.2%}"
 else:
